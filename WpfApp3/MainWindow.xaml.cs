@@ -21,6 +21,7 @@ namespace WpfApp3
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,36 +33,38 @@ namespace WpfApp3
                 }
             }
         }
-        public void Button_Click(Object sender, RoutedEventArgs e)
+
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
-            string textButton = ((Button)e.OriginalSource).Content.ToString();
-            if (textButton == "CE")
+            try
             {
-                StrokaVvoda.Clear();
-                SText.Clear();
-            }
+                string textButton = ((Button)e.OriginalSource).Content.ToString();
+                if (textButton == "CE")
+                {
+                    StrokaVvoda.Clear();
+                }
 
-            else if (textButton == "P")
-            {
-                Window a = new Window1();
-                a.Show();
-            }
-            else if (textButton == "R")
-            {
-                Window a = new Window1();
-                a.Show();
-            }
+                else if (textButton == "C")
+                {
+                    StrokaVvoda.Text = StrokaVvoda.Text[..(StrokaVvoda.Text.Length - 1)];
+                }
 
-            else if (textButton == "=")
-            {
-                StrokaVvoda.Text = new DataTable().Compute(StrokaVvoda.Text, null).ToString();
-            }
+                else if (textButton == "=")
+                {
+                    StrokaVvoda.Text = new DataTable().Compute(StrokaVvoda.Text, null).ToString();
+                }
 
-            else
+                else
+                {
+                    StrokaVvoda.Text += textButton;
+                }
+            }
+            catch
             {
-                StrokaVvoda.Text += textButton;
+                MessageBox.Show("Ошибка");
             }
         }
+
 
         private void StrokaVvoda_TextChanged(object sender, TextChangedEventArgs e)
         {

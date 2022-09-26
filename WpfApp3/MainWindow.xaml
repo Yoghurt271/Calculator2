@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
         mc:Ignorable="d"
-        Title="Калькулятор" Height="600" Width="600" WindowStyle="ThreeDBorderWindow" Background="Black"  >
+        Title="Калькулятор" Height="600" Width="600" WindowStyle="ThreeDBorderWindow" Background="Black" ResizeMode="NoResize" >
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="MinHeight" Value="50"/>
@@ -28,19 +28,13 @@
                                           TextElement.FontFamily="{TemplateBinding FontFamily}">
                             </ContentPresenter>
                         </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="backgroundElement"
-                                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button" x:Key="orangeButton">
             <Setter Property="Background" Value="#FE9E09"/>
-            <Setter Property="BorderBrush" Value="#FBC78E"/>
+
         </Style>
 
         <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button" x:Key="darkGreyButton">
@@ -68,8 +62,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource darkGreyButton}">P</Button>
-        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource darkGreyButton}">R</Button>
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource darkGreyButton}">C</Button>
         <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource darkGreyButton}">CE</Button>
         <Button Grid.Column="3" Grid.Row="3" Style="{StaticResource orangeButton}">/</Button>
 
@@ -94,12 +87,7 @@
         <Button Grid.Column="3" Grid.Row="7" Style="{StaticResource orangeButton}">=</Button>
 
         <TextBox x:Name="StrokaVvoda" FontSize="32" Text="" BorderBrush="White" TextChanged="StrokaVvoda_TextChanged"
-                 IsEnabled="False" Margin="37,24,37,10" Grid.RowSpan="2" Grid.ColumnSpan="4" Background="Black" Foreground="White"             
-                 BorderThickness="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="1"/>
-        <TextBox x:Name="SText" FontSize="32" Text="" BorderBrush="White" TextChanged="StrokaVvoda_TextChanged"
-                 IsEnabled="False" Margin="37,10,37,54" Grid.RowSpan="2" Grid.ColumnSpan="4" Background="Black" Foreground="White"             
+                 IsEnabled="False" Margin="37,10,37,10" Grid.RowSpan="3" Grid.ColumnSpan="4" Background="Black" Foreground="White"             
                  BorderThickness="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-
-
     </Grid>
 </Window>
